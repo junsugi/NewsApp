@@ -56,7 +56,6 @@ public class NewsActivity extends AppCompatActivity {
     //뉴스정보 받아오기 (JSON)
     //Reference volley document
     public void getNews(){
-
         //News API (South Korea)
         String url ="http://newsapi.org/v2/top-headlines?country=kr&apiKey=6b3b4723e2e94f4b98aee5ed716bb4c6";
         // Request a string response from the provided URL.
@@ -64,11 +63,9 @@ public class NewsActivity extends AppCompatActivity {
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
-                        Log.d("NEWS", response);
-
                         try {
                             JSONObject jsonObject = new JSONObject(response);
-                            JSONArray arrayArticles = jsonObject.getJSONArray("article");
+                            JSONArray arrayArticles = jsonObject.getJSONArray("articles");
 
                             //response --> NewsData Class 분류
                             List<NewsData> news = new ArrayList<>();
@@ -76,12 +73,10 @@ public class NewsActivity extends AppCompatActivity {
                             for(int i = 0; i < arrayArticles.length(); i++){
                                 JSONObject obj = arrayArticles.getJSONObject(i);
 
-                                Log.d("NEWS", obj.toString());
-
                                 NewsData newsData = new NewsData();
                                 newsData.setTitle(obj.getString("title"));
                                 newsData.setUrlToImage(obj.getString("urlToImage"));
-                                newsData.setContents(obj.getString("contents"));
+                                newsData.setContents(obj.getString("description"));
                                 news.add(newsData);
                             }
                             // specify an adapter (see also next example)
@@ -91,7 +86,6 @@ public class NewsActivity extends AppCompatActivity {
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }
-
                     }
                 }, new Response.ErrorListener() {
             @Override

@@ -34,4 +34,6 @@ dependencies {
     implementation 'com.facebook.fresco:fresco:2.1.0'
     //네트워크 통신
     implementation 'com.android.volley:volley:1.1.1'
+
+    implementation 'gun0912.ted:tedpermission:2.0.0'
 }
