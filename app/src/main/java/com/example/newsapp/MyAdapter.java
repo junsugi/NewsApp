@@ -67,7 +67,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
 
         String content = news.getContents();
 
-        if(news.getContents() != null && content.length() > 0){
+        if(news.getContents() != "null" && content.length() > 0){
             holder.textViewContents.setText(content);
         } else {
             holder.textViewContents.setText("-");
@@ -80,8 +80,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
     // Return the size of your dataset (invoked by the layout manager)
     @Override
     public int getItemCount() {
-        Log.d("size", String.valueOf(mDataset.size()));
-        //삼항 연산자
+           //삼항 연산자
         return mDataset == null ? 0 : mDataset.size();
     }
 }
