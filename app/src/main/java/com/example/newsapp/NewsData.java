@@ -1,0 +1,17 @@
+package com.example.newsapp;
+
+import java.io.Serializable;
+
+public class NewsData implements Serializable {
+    //데이터 캡슐화
+    private String title;
+    private String urlToImage;
+    private String contents;
+
+    public String getTitle() {return title;}
+    public void setTitle(String title) {this.title = title;}
+    public String getUrlToImage() {return urlToImage;}
+    public void setUrlToImage(String urlToImage) {this.urlToImage = urlToImage;}
+    public String getContents() {return contents;}
+    public void setContents(String contents) {this.contents = contents;}
+}

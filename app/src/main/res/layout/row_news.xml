@@ -7,11 +7,10 @@
     android:orientation="vertical">
 
     <androidx.cardview.widget.CardView
-        xmlns:card_view="http://schemas.android.com/apk/res-auto"
         android:id="@+id/card_view"
         android:layout_width="match_parent"
-        android:layout_gravity="center"
         android:layout_height="250dp"
+        android:layout_gravity="center"
         android:layout_margin="12dp"
         app:cardCornerRadius="4dp">
 
@@ -23,12 +22,12 @@
                 android:layout_width="match_parent"
                 android:layout_height="200dp">
 
-                <ImageView
+                <com.facebook.drawee.view.SimpleDraweeView
                     android:id="@+id/ImageView"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:background="@null"
-                    android:src="@drawable/ic_launcher_foreground"/>
+                    android:layout_width="130dp"
+                    android:layout_height="130dp"
+                    >
+                </com.facebook.drawee.view.SimpleDraweeView>
 
                 <TextView
                     android:id="@+id/TextViewTitle"
