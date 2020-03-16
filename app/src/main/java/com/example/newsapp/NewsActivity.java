@@ -1,7 +1,9 @@
 package com.example.newsapp;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -80,7 +82,22 @@ public class NewsActivity extends AppCompatActivity {
                                 news.add(newsData);
                             }
                             // specify an adapter (see also next example)
-                            mAdapter = new MyAdapter(news, NewsActivity.this);
+                            mAdapter = new MyAdapter(news, NewsActivity.this, new View.OnClickListener() {
+                                @Override
+                                public void onClick(View v) {
+                                    Object obj = v.getTag();
+                                    if(v.getTag() != null){
+                                        int position = (int) obj;
+                                        Intent intent = new Intent(getApplicationContext(), NewsDetailActivity.class);
+                                        //1. 본문만 넘기기
+                                        //2. 전체를 다
+                                        //   2-1. 하나식 다 넘기기
+                                        //   2-2. 한번에 다 넘기기 (추천)
+                                        intent.putExtra("NewsDetail", ((MyAdapter) mAdapter).getNews(position));
+                                        startActivity(intent);
+                                    }
+                                }
+                            });
                             recyclerView.setAdapter(mAdapter);
 
                         } catch (JSONException e) {

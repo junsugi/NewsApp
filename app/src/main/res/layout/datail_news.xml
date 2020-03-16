@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:layout_margin="6dp"
+    >
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_margin="10dp"
+        >
+        <TextView
+            android:id="@+id/detailHeadline"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:text="헤드라인 입니다."
+            android:gravity="center"
+            android:textStyle="bold"
+            android:textSize="20sp" />
+
+        <com.facebook.drawee.view.SimpleDraweeView
+            android:id="@+id/detailImage"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:layout_below="@+id/detailHeadline"
+            android:paddingTop="10dp"
+            android:paddingBottom="6dp"
+            >
+        </com.facebook.drawee.view.SimpleDraweeView>
+
+        <TextView
+            android:id="@+id/detailContents"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@+id/detailImage"
+            android:paddingTop="6dp"
+            android:text="테스트 입니다."
+            android:textSize="15dp"
+            android:textStyle="normal"
+            />
+
+    </RelativeLayout>
+
+
+</LinearLayout>

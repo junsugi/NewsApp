@@ -21,6 +21,8 @@ import java.util.List;
 
 public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
     private List<NewsData> mDataset;
+    private static View.OnClickListener onClick;
+
 
     // Provide a reference to the views for each data item
     // Complex data items may need more than one view per item, and
@@ -30,20 +32,27 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
         public TextView textViewTitle;
         public TextView textViewContents;
         public ImageView imageView;
+        public View rootView;
 
         public MyViewHolder(View v) {
             super(v);
             textViewTitle = v.findViewById(R.id.TextViewTitle);
             textViewContents = v.findViewById(R.id.TextViewContents);
             imageView = (SimpleDraweeView) v.findViewById(R.id.ImageView);
+            rootView = v;
+
+            v.setEnabled(true);
+            v.setClickable(true);
+            v.setOnClickListener(onClick);
         }
     }
 
     // Provide a suitable constructor (depends on the kind of dataset)
     // Activity Context를 가져다가 쓰면 메모리 누수가 발생한다. (일단은 쉽게 할 수 있는 부분이라서 사용)
-    public MyAdapter(List<NewsData> myDataset, Context context) {
+    public MyAdapter(List<NewsData> myDataset, Context context, View.OnClickListener onClick) {
         mDataset = myDataset;
         Fresco.initialize(context);
+        this.onClick = onClick;
     }
 
     // Create new views (invoked by the layout manager)
@@ -75,6 +84,9 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
 
         Uri uri = Uri.parse(news.getUrlToImage());
         holder.imageView.setImageURI(uri);
+
+        //tag - label
+        holder.rootView.setTag(position);
     }
 
     // Return the size of your dataset (invoked by the layout manager)
@@ -82,6 +94,10 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
     public int getItemCount() {
            //삼항 연산자
         return mDataset == null ? 0 : mDataset.size();
+    }
+
+    public  NewsData getNews(int position){
+        return mDataset != null ? mDataset.get(position) : null;
     }
 }
 
